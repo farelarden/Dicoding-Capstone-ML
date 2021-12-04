@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Model Deployment</title>
+   </head>
+   <body>
+      <h1>Predict the value of your item</h1>
+    
+      <form action="/" method="POST">
+         <label for="cars">Value:</label>
+         <input type="text" name="value" placeholder="Value"><br><br>
+       
+         <label for="cars">Choose Your City:</label>
+         <select name="city" id="city">
+            <optgroup label="City">
+               <option value="KOTA MEULABOH">KOTA MEULABOH</option>
+               <option value="KOTA_BANDA_ACEH">KOTA BANDA ACEH</option>
+            </optgroup>
+         </select><br><br>
+
+         <label for="cars">Choose Your Sector:</label>
+         <select name="sector_option" id="sector_option">
+            <optgroup label="Swedish Cars">
+               <option value="MAKANAN">MAKANAN</option>
+               <option value="MINUMAN_TAK_BERALKOHOL">MINUMAN TAK BERALKOHOL</option>
+            </optgroup>
+         </select><br><br>
+         <label for="cars">End Date:</label>
+         <input type="date" id="inflation_date_end" name="inflation_date_end"><br><br>
+
+         <input type="submit">
+
+         
+      </form>
+
+   {% if my_marks %}
+         {{my_marks}}      
+   {% endif %}
+   </body>
+   </htm1>

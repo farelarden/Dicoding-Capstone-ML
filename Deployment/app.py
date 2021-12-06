@@ -5,8 +5,28 @@ import pandas as pd
 from fbprophet import Prophet
 from datetime import date
 from datetime import datetime
-
+import json
+import plotly
+import math
 app = Flask(__name__)
+
+import io
+import random
+from flask import Response
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
+import plotly.graph_objects as go
+
+def my_plot(data,plot_var):
+    data_plot = go.Scatter(x=data["ds"],y=data[plot_var], line=dict(color="#CE285E",width=2))
+    layout=go.Layout(title=dict(text="This is a Line Chart of Variable"+" "+str(plot_var),x=0.5),
+    xaxis_title="Record Number", yaxis_title="Values"
+    )
+    fig =go.Figure(data=data_plot, layout=layout)
+    # This is conversion step...
+    fig_json = fig.to_json()
+    graphJSON = json.dumps(fig_json, cls=plotly.utils.PlotlyJSONEncoder)
+    return graphJSON
 
 def sector_chosen(argument):
 
@@ -43,19 +63,36 @@ def marks_prediction(value,city, sector, start_date, end_date):
     future = m.make_future_dataframe(periods=100,freq='M')
     forecast = m.predict(future)
 
-    # forecast_value = forecast.loc[forecast.ds == '2014-01-01',['yhat']].values[0]
+    mask = (forecast['ds'] > start_date) & (forecast['ds'] <= end_date)
+    
+    graph_mask = forecast['ds'] <= end_date
 
-    mask = (forecast['ds'] > '2021-10-31') & (forecast['ds'] <= '2021-12-31')
     forecast_mask = forecast.loc[mask]
+
+    forecast_graph_mask = forecast.loc[graph_mask]
+    forecast_graph_mask['value'] = forecast_graph_mask['yhat']*value
+
+    if forecast_mask.empty:
+        return value
 
     inflation_average_rate = (forecast_mask['yhat'].sum())/forecast_mask.shape[0]
 
-    value += inflation_average_rate*value
-    return value
+    value += inflation_average_rate*0.01*value
+
+    forecast_graph_mask['value'] = value + forecast_graph_mask['yhat']*value*0.01
+
+    forecast_graph_mask.value = forecast_graph_mask.value.astype(int)
+
+    chart_from_python=my_plot(forecast_graph_mask,"value")
+
+    value = int(value)
+
+    return value,chart_from_python
 
 @app.route("/", methods = ["GET","POST"])
 def marks():
     mk=""
+    chart_from_python=""
     if request.method == "POST":
         
         value = request.form['value']
@@ -65,15 +102,14 @@ def marks():
         end_date = request.form['inflation_date_end']
 
         value = float(value)
-
-        # start_date = datetime.strptime(start_date, '%m-%d-%Y').date()
-        # end_date = datetime.strptime(end_date, '%m-%d-%Y').date()
+        end_date = pd.to_datetime(end_date)
+        start_date = pd.to_datetime(start_date)
         print(type(end_date))
-        marks_pred = marks_prediction(value,city, sector, start_date, end_date)
+        marks_pred,chart_from_python = marks_prediction(value,city, sector, start_date, end_date)
         print(marks_pred)
         mk = marks_pred
     
-    return render_template("index.html",my_marks = mk)
+    return render_template("index.html",my_marks = mk,chart_for_html=chart_from_python)
 
 if __name__== "__main__":
     app.run(debug = True)

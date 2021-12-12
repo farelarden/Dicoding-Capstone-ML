@@ -101,8 +101,6 @@ def marks_prediction(value,city, sector, start_date, end_date):
 
     return value,chart_from_python_city_1
 
-
-
 def distance(lat1, lon1, lat2, lon2):
     p = 0.017453292519943295
     hav = 0.5 - cos((lat2-lat1)*p)/2 + cos(lat1*p)*cos(lat2*p) * (1-cos((lon2-lon1)*p)) / 2
@@ -139,7 +137,19 @@ def city_comparison(city):
 
     return First_city, Second_city
 
+def get_sector_value(product):
 
+    dataset= pd.read_csv('Product Names - Sheet1.csv')
+    dataset=dataset.rename(columns = {'Nama Produk':'Nama_Produk'})
+    new = dataset.query('Nama_Produk.str.contains(@product)', engine='python')
+    if new.empty:
+        return 0,0
+    else:
+        value = new.at[0,'Harga(IDR)']
+        sector = new.at[0,'Sektor']
+        return value,sector
+
+    
 
 @app.route("/", methods = ["GET","POST"])
 def marks():
@@ -147,26 +157,30 @@ def marks():
     chart_from_python=""
     second_chart=""
     third_chart=""
+    value=""
+    marks=""
     if request.method == "POST":
         
-        value = request.form['value']
+        product = request.form['product']
         city = request.form['city']
-        sector = request.form['sector_option']
         start_date = date.today()
         end_date = request.form['inflation_date_end']
-
+        value,sector = get_sector_value(product)
         value = float(value)
-        end_date = pd.to_datetime(end_date)
-        start_date = pd.to_datetime(start_date)
-        print(type(end_date))
-        second_city,third_city = city_comparison(city)
-        marks_pred,chart_from_python = marks_prediction(value,city, sector, start_date, end_date)
-        marks_pred_2, second_chart = marks_prediction(value,second_city, sector, start_date, end_date)
-        marks_pred_3, third_chart = marks_prediction(value,third_city, sector, start_date, end_date)
-        print(marks_pred)
-        mk = marks_pred
+        print(type(value))
+        if value == 0:
+            return render_template("product.html",my_marks = "Sorry, but There is no Product")
+        else:
+            end_date = pd.to_datetime(end_date)
+            start_date = pd.to_datetime(start_date)
+            second_city,third_city = city_comparison(city)
+            marks_pred,chart_from_python = marks_prediction(value,city, sector, start_date, end_date)
+            marks_pred_2, second_chart = marks_prediction(value,second_city, sector, start_date, end_date)
+            marks_pred_3, third_chart = marks_prediction(value,third_city, sector, start_date, end_date)
+            print(marks_pred)
+            mk = marks_pred
     
-    return render_template("index.html",my_marks = mk,chart_for_html=chart_from_python,chart_for_html_2=second_chart,chart_for_html_3=third_chart)
-
+    return render_template("product.html",my_marks = mk,chart_for_html=chart_from_python,chart_for_html_2=second_chart,chart_for_html_3=third_chart)
+        
 if __name__== "__main__":
     app.run(debug = True)

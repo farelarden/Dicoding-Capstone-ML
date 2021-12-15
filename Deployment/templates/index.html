@@ -1,81 +1,289 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-   
-   <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Model Deployment</title>
-      <script src="https://cdn.plot.ly/plotly-latest.min.js" ></script>
-   </head>
-   <body>
-      <h1>Predict the value of your item</h1>
-    
-      <form action="/" method="POST">
-         <label for="cars">Value:</label>
-         <input type="text" name="value" placeholder="Value"><br><br>
-       
-         <label for="cars">Choose Your City:</label>
-         <select name="city" id="city">
-            <optgroup label="Aceh">
-               <option value="KOTA MEULABOH">KOTA MEULABOH</option>
-               <option value="KOTA BANDA ACEH">KOTA BANDA ACEH</option>
-            </optgroup>
-         </select><br><br>
 
-         <label for="cars">Choose Your Sector:</label>
-         <select name="sector_option" id="sector_option">
-            <optgroup label="Swedish Cars">
-               <option value="MAKANAN">MAKANAN</option>
-               <option value="MINUMAN_TAK_BERALKOHOL">MINUMAN TAK BERALKOHOL</option>
-            </optgroup>
-         </select><br><br>
-         <label for="cars">End Date:</label>
-         <input type="date" id="inflation_date_end" name="inflation_date_end"><br><br>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-         <input type="submit">
-         
-       
-      </form>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-      <!-- <img src="/plot.png" alt="my plot"> -->
-         
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-   {% if my_marks %}
-         {{my_marks}}      
-   {% endif %}
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
-   <div class="container" id="chart1" style="margin:0 auto;align-items: center; justify-content: center; ">
-      <script type="text/javascript">
-      var graphs;
-      var graphs = {{ chart_for_html | safe }};
-      var graphs=JSON.parse(graphs);
-      // console.log()
-      var config ={displayModeBar: false,showTips: false,responsive:true};
-      Plotly.plot('chart1',graphs.data,graphs.layout,config);
-      </script>
-      </div>
+    <title>Inflativa Predictor</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
 
-      <div class="container" id="chart1" style="margin:0 auto;align-items: center; justify-content: center; ">
-         <script type="text/javascript">
-         var graphs;
-         var graphs = {{ chart_for_html_2 | safe }};
-         var graphs=JSON.parse(graphs);
-         // console.log()
-         var config ={displayModeBar: false,showTips: false,responsive:true};
-         Plotly.plot('chart1',graphs.data,graphs.layout,config);
-         </script>
-         </div>
+<body>
+    <!-- background image -->
+    <div class="bg-img">
+        <!-- overlay -->
+        <div class="overlay">
 
-         <div class="container" id="chart1" style="margin:0 auto;align-items: center; justify-content: center; ">
-            <script type="text/javascript">
-            var graphs;
-            var graphs = {{ chart_for_html_3 | safe }};
-            var graphs=JSON.parse(graphs);
-            // console.log()
-            var config ={displayModeBar: false,showTips: false,responsive:true};
-            Plotly.plot('chart1',graphs.data,graphs.layout,config);
-            </script>
+            <div class="container">
+                <div class="row">
+                    <div class="col p-md-3">
+                        <h1 class="text-center text-white">Predict the <span class="value">value</span> of your item
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="card card-index">
+                    <div class="container">
+                        <form action="/" method="POST">
+
+                            <div class="row my-3">
+                                <div class="col-md-1"></div>
+                                <div class="col-4">
+                                    <label for="value" class="col-sm-6 col-form-label">Value</label>
+                                </div>
+
+                                <div class="col-6">
+                                    <input type="text" class="form-control" id="value" placeholder="~Input your value~" name="value">
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+
+                            <div class="row my-3">
+                                <div class="col-md-1"></div>
+                                <div class="col-4">
+                                    <label for="sector" class="col-sm-6 col-form-label">Sector</label>
+                                </div>
+
+                                <div class="col-6">
+                                    <select class="form-control sector" name="sector_option" id="sector_option">
+                                        <option class="sector-option" selected>~Choose your sector~</option>
+                                        <option class="sector-option" value="MAKANAN">Makanan</option>
+                                        <option class="sector-option" value="MINUMAN_TAK_BERALKOHOL">Minuman</option>
+                                        <option class="sector-option" value="Rumah">Rumah</option>
+                                        <option class="sector-option" value="Sandang">Sandang</option>
+                                        <option class="sector-option" value="Transportasi">Transportasi</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+
+                            <div class="row my-3">
+                                <div class="col-md-1"></div>
+                                <div class="col-4">
+                                    <label for="city" class="col-sm-6 col-form-label">City</label>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="input-group">
+                                        <select id="city" name="city" class="selectpicker w-100 btn-green" data-live-search="true"
+                                            id="city">
+                                            <option>~Choose your city~</option>
+                                            <option value="KOTA MEULABOH">Meulaboh</option>
+                                            <option value="KOTA BANDA ACEH">Banda Aceh</option>
+                                            <option value="KOTA LHOKSEUMAWE">Lhokseumawe</option>
+                                            <option value="KOTA SIBOLGA">Sibolga</option>
+                                            <option value="KOTA PEMATANG SIANTAR">Pematang Siantar</option>
+                                            <option value="KOTA MEDAN">Medan</option>
+                                            <option value="KOTA PADANGSIDIMPUAN">Padangsidimpuan</option>
+                                            <option value="KOTA PADANG">Padang</option>
+                                            <option value="KOTA BUKITTINGGI">Bukittinggi</option>
+                                            <option value="KOTA TEMBILAHAN">Tembilahan</option>
+                                            <option value="KOTA PEKANBARU">Pekanbaru</option>
+                                            <option value="KOTA DUMAI">Dumai</option>
+                                            <option value="BUNGO">Bungo</option>
+                                            <option value="KOTA JAMBI">Jambi</option>
+                                            <option value="KOTA PALEMBANG">Palembang</option>
+                                            <option value="KOTA LUBUKLINGGAU">Lubuklinggau</option>
+                                            <option value="KOTA BENGKULU">Bengkulu</option>
+                                            <option value="KOTA BANDAR LAMPUNG">Bandar Lampung</option>
+                                            <option value="KOTA METRO">Metro</option>
+                                            <option value="TANJUNG PANDAN">Pandan</option>
+                                            <option value="KOTA PANGKAL PINANG">Pangkal Pinang</option>
+                                            <option value="KOTA BATAM">Batam</option>
+                                            <option value="KOTA TANJUNG PINANG">Tanjung Pinang</option>
+                                            <option value="KOTA DKI JAKARTA">DKI Jakarta</option>
+                                            <option value="KOTA BOGOR">Bogor</option>
+                                            <option value="KOTA SUKABUMI">Sukabumi</option>
+                                            <option value="KOTA BANDUNG">Bandung</option>
+                                            <option value="KOTA CIREBON">Cirebon</option>
+                                            <option value="KOTA BEKASI">Bekasi</option>
+                                            <option value="KOTA DEPOK">Depok</option>
+                                            <option value="KOTA TASIKMALAYA">Tasikmalaya</option>
+                                            <option value="CILACAP">Cilacap</option>
+                                            <option value="PURWOKERTO">Purwokerto</option>
+                                            <option value="KUDUS">Kudus</option>
+                                            <option value="KOTA SURAKARTA">Surakarta</option>
+                                            <option value="KOTA SEMARANG">Semarang</option>
+                                            <option value="KOTA TEGAL">Tegal</option>
+                                            <option value="KOTA YOGYAKARTA">Yogyakarta</option>
+                                            <option value="JEMBER">Jember</option>
+                                            <option value="BANYUWANGI">Banyuwangi</option>
+                                            <option value="SUMENEP">Sumenep</option>
+                                            <option value="KOTA KEDIRI">Kediri</option>
+                                            <option value="KOTA MALANG">Malang</option>
+                                            <option value="KOTA PROBOLINGGO">Probolinggo</option>
+                                            <option value="KOTA MADIUN">Madiun</option>
+                                            <option value="KOTA SURABAYA">Surabaya</option>
+                                            <option value="KOTA TANGERANG">Tangerang</option>
+                                            <option value="KOTA CILEGON">Cilegon</option>
+                                            <option value="KOTA SERANG">Serang</option>
+                                            <option value="SINGARAJA">Singaraja</option>
+                                            <option value="KOTA DENPASAR">Denpasar</option>
+                                            <option value="KOTA MATARAM">Mataram</option>
+                                            <option value="KOTA BIMA">Bima</option>
+                                            <option value="MAUMERE">Maumere</option>
+                                            <option value="KOTA KUPANG">Kupang</option>
+                                            <option value="KOTA PONTIANAK">Pontianak</option>
+                                            <option value="KOTA SINGKAWANG">Singkawang</option>
+                                            <option value="SAMPIT">Sampit</option>
+                                            <option value="KOTA PALANGKA RAYA">Palangka Raya</option>
+                                            <option value="KOTA TANJUNG">Tanjung</option>
+                                            <option value="KOTA BANJARMASIN">Banjarmasin</option>
+                                            <option value="KOTA BALIKPAPAN">Balikpapan</option>
+                                            <option value="KOTA SAMARINDA">Samarinda</option>
+                                            <option value="KOTA TARAKAN">Tarakan</option>
+                                            <option value="KOTA MANADO">Manado</option>
+                                            <option value="KOTA PALU">Palu</option>
+                                            <option value="BULUKUMBA">Bulukumba</option>
+                                            <option value="WATAMPONE">Watampone</option>
+                                            <option value="KOTA MAKASSAR">Makassar</option>
+                                            <option value="KOTA PARE-PARE">Pare-pare</option>
+                                            <option value="KOTA PALOPO">Palopo</option>
+                                            <option value="KOTA KENDARI">Kendari</option>
+                                            <option value="KOTA BAU-BAU">Bau-bau</option>
+                                            <option value="KOTA GORONTALO">Gorontalo</option>
+                                            <option value="MAMUJU">Mamuju</option>
+                                            <option value="KOTA AMBON">Ambon</option>
+                                            <option value="KOTA TUAL">Tual</option>
+                                            <option value="KOTA TERNATE">Ternate</option>
+                                            <option value="MANOKWARI">Manokwari</option>
+                                            <option value="KOTA SORONG">Sorong</option>
+                                            <option value="MERAUKE">Merauke</option>
+                                            <option value="KOTA JAYAPURA">Jayapura</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+
+                            <div class="row my-3">
+                                <div class="col-md-1"></div>
+                                <div class="col-4">
+                                    <label for="date" class="col-sm-6 col-form-label">Date</label>
+                                </div>
+
+                                <div class="col-6">
+                                    <input type="date" class="form-control" name="inflation_date_end" id="inflation_date_end">
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+
+                            <div class="row my-3 pd-md-5">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
+                                    <div class="d-grid gap-1">
+                                        <input type="submit" class="btn btn-succes btn-green">
+                                        <!-- <button type="submit" class="btn btn-succes btn-green">Check!</button> -->
+                                    </div>
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+
+                        </form>
+
+                        {% if my_marks %}
+                        {{my_marks}}
+                        {% endif %}
+
+                        <div class="row my-3 pd-md-5">
+                            <h5 class="text-center">Line chart</h5>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <div class="d-grid gap-1"id="chart1" >
+
+                                    <script type="text/javascript">
+                                        var graphs;
+                                        var graphs = {{ chart_for_html | safe }};
+                                        var graphs=JSON.parse(graphs);
+                                        // console.log()
+                                        var config ={displayModeBar: false,showTips: false,responsive:true};
+                                        Plotly.plot('chart1',graphs.data,graphs.layout,config);
+                                        </script>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row my-3 pd-md-5">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <div class="d-grid gap-1" id="chart2">
+
+                                    <script type="text/javascript">
+                                        var graphs2;
+                                        var graphs2 = {{ chart_for_html_2 | safe }};
+                                        var graphs2=JSON.parse(graphs2);
+                                        // console.log()
+                                        var config ={displayModeBar: false,showTips: false,responsive:true};
+                                        Plotly.plot('chart2',graphs2.data,graphs.layout,config);
+                                        </script>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row my-3 pd-md-5">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <div class="d-grid gap-1" id="chart3">
+
+                                    <script type="text/javascript">
+                                        var graphs3;
+                                        var graphs3 = {{ chart_for_html_3 | safe }};
+                                        var graphs3=JSON.parse(graphs3);
+                                        // console.log()
+                                        var config ={displayModeBar: false,showTips: false,responsive:true};
+                                        Plotly.plot('chart3',graphs3.data,graphs.layout,config);
+                                        </script>
+                                </div>
+                                <a href="product.html">Next</a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!-- end of container -->
             </div>
-   </body>
-   </htm1>
+            <!-- end of overlay -->
+        </div>
+        <!-- end of background image -->
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+        <!-- bootstrap 5 -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        </script>
+
+        <script>
+            $('.selectpicker').selectpicker();
+        </script>
+</body>
+
+</html>

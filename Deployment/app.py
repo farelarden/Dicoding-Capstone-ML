@@ -9,7 +9,7 @@ import json
 import plotly
 import math
 app = Flask(__name__)
-
+import dateutil.relativedelta
 import io
 import random
 from flask import Response
@@ -19,10 +19,10 @@ import plotly.graph_objects as go
 
 from math import radians, cos, sin, asin, sqrt
 
-def dist(lat1, long1, lat2, long2): 
+def dist(lat1, long1, lat2, long2):
     lat1, long1, lat2, long2 = map(radians, [lat1, long1, lat2, long2])
-    dlon = long2 - long1 
-    dlat = lat2 - lat1 
+    dlon = long2 - long1
+    dlat = lat2 - lat1
     a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
     c = 2 * asin(sqrt(a))
     km = 6371* c
@@ -31,7 +31,7 @@ def dist(lat1, long1, lat2, long2):
 
 def my_plot(data,plot_var,city):
     data_plot = go.Scatter(x=data["ds"],y=data[plot_var], line=dict(color="#CE285E",width=2))
-    layout=go.Layout(title=dict(text="This is the value of your item in "+" "+str(city),x=0.5),
+    layout=go.Layout(title=dict(text="The value of your item in "+" "+str(city),x=0.5),
     xaxis_title="Date", yaxis_title="Values"
     )
     fig =go.Figure(data=data_plot, layout=layout)
@@ -50,9 +50,12 @@ def sector_chosen(argument):
 
     switcher = {
         "MAKANAN": df_Makanan,
-        "MINUMAN_TAK_BERALKOHOL": df_Minuman,        
+        "MINUMAN_TAK_BERALKOHOL": df_Minuman,
+        "Rumah": df_Rumah,
+        "Sandang": df_Sandang,
+        "Transportasi": df_Transportasi,
     }
- 
+
     return switcher.get(argument, "nothing")
 
 def marks_prediction(value,city, sector, start_date, end_date):
@@ -74,9 +77,9 @@ def marks_prediction(value,city, sector, start_date, end_date):
 
     future = m.make_future_dataframe(periods=100,freq='M')
     forecast = m.predict(future)
-
+    start_date = start_date - dateutil.relativedelta.relativedelta(months=1)
     mask = (forecast['ds'] > start_date) & (forecast['ds'] <= end_date)
-    
+
     graph_mask = forecast['ds'] <= end_date
 
     forecast_mask = forecast.loc[mask]
@@ -131,7 +134,7 @@ def city_comparison(city):
         if dataset_2_1[i]['Kota'] == First_city:
             del dataset_2_1[i]
             break
-    
+
     v = {'lat': dataset_2_1_2['lat'], 'lon': dataset_2_1_2['lon']}
     closest_2 = closest(dataset_2_1, v)
 
@@ -148,24 +151,33 @@ def marks():
     second_chart=""
     third_chart=""
     if request.method == "POST":
-        
+
         value = request.form['value']
         city = request.form['city']
         sector = request.form['sector_option']
         start_date = date.today()
         end_date = request.form['inflation_date_end']
 
-        value = float(value)
         end_date = pd.to_datetime(end_date)
         start_date = pd.to_datetime(start_date)
-        print(type(end_date))
-        second_city,third_city = city_comparison(city)
-        marks_pred,chart_from_python = marks_prediction(value,city, sector, start_date, end_date)
-        marks_pred_2, second_chart = marks_prediction(value,second_city, sector, start_date, end_date)
-        marks_pred_3, third_chart = marks_prediction(value,third_city, sector, start_date, end_date)
-        print(marks_pred)
-        mk = marks_pred
-    
+
+        
+
+        if value =="" or city=="" or sector=="" or end_date=="":
+            mk = "Please fill in the inputs to get the inflation result."
+            return render_template("index.html",my_marks = mk)
+        elif end_date <= start_date:
+            mk = "The date must not from the previous month"
+            return render_template("index.html",my_marks = mk)
+        else:
+            value = float(value)              
+            second_city,third_city = city_comparison(city)
+            marks_pred,chart_from_python = marks_prediction(value,city, sector, start_date, end_date)
+            marks_pred_2, second_chart = marks_prediction(value,second_city, sector, start_date, end_date)
+            marks_pred_3, third_chart = marks_prediction(value,third_city, sector, start_date, end_date)
+            print(marks_pred)
+            mk = marks_pred
+
     return render_template("index.html",my_marks = mk,chart_for_html=chart_from_python,chart_for_html_2=second_chart,chart_for_html_3=third_chart)
 
 if __name__== "__main__":

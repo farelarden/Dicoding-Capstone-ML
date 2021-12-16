@@ -205,32 +205,36 @@
                             <div class="col-md-10">
                                 <div class="d-grid gap-1"id="chart1" >
 
-                                    <script type="text/javascript">
-                                        var graphs;
-                                        var graphs = {{ chart_for_html | safe }};
-                                        var graphs=JSON.parse(graphs);
-                                        // console.log()
-                                        var config ={displayModeBar: false,showTips: false,responsive:true};
-                                        Plotly.plot('chart1',graphs.data,graphs.layout,config);
-                                        </script>
+                                 <script type="text/javascript">
+                                    var graphs;
+                                    var graphs = {{ chart_for_html | safe }};
+                                    var graphs=JSON.parse(graphs);
+                                    // console.log()
+                                    var config ={displayModeBar: false,showTips: false,responsive:true};
+                                    Plotly.plot('chart1',graphs.data,graphs.layout,config);
+                                    </script>
                                 </div>
                             </div>
                             <div class="col-md-1"></div>
                         </div>
+
+                        {% if my_marks_2 %}
+                        {{my_marks_2}}
+                        {% endif %}
 
                         <div class="row my-3 pd-md-5">
                             <div class="col-md-1"></div>
                             <div class="col-md-10">
                                 <div class="d-grid gap-1" id="chart2">
 
-                                    <script type="text/javascript">
-                                        var graphs2;
-                                        var graphs2 = {{ chart_for_html_2 | safe }};
-                                        var graphs2=JSON.parse(graphs2);
-                                        // console.log()
-                                        var config ={displayModeBar: false,showTips: false,responsive:true};
-                                        Plotly.plot('chart2',graphs2.data,graphs.layout,config);
-                                        </script>
+                                 <script type="text/javascript">
+                                    var graphs;
+                                    var graphs = {{ chart_for_html_2 | safe }};
+                                    var graphs=JSON.parse(graphs);
+                                    // console.log()
+                                    var config ={displayModeBar: false,showTips: false,responsive:true};
+                                    Plotly.plot('chart2',graphs.data,graphs.layout,config);
+                                    </script>
                                 </div>
                             </div>
                             <div class="col-md-1"></div>
@@ -241,14 +245,14 @@
                             <div class="col-md-10">
                                 <div class="d-grid gap-1" id="chart3">
 
-                                    <script type="text/javascript">
-                                        var graphs3;
-                                        var graphs3 = {{ chart_for_html_3 | safe }};
-                                        var graphs3=JSON.parse(graphs3);
-                                        // console.log()
-                                        var config ={displayModeBar: false,showTips: false,responsive:true};
-                                        Plotly.plot('chart3',graphs3.data,graphs.layout,config);
-                                        </script>
+                                 <script type="text/javascript">
+                                    var graphs;
+                                    var graphs = {{ chart_for_html_3 | safe }};
+                                    var graphs=JSON.parse(graphs);
+                                    // console.log()
+                                    var config ={displayModeBar: false,showTips: false,responsive:true};
+                                    Plotly.plot('chart3',graphs.data,graphs.layout,config);
+                                    </script>
                                 </div>
                                 <a href="product.html">Next</a>
                             </div>

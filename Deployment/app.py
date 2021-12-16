@@ -150,6 +150,7 @@ def marks():
     chart_from_python=""
     second_chart=""
     third_chart=""
+    mk_2=""
     if request.method == "POST":
 
         value = request.form['value']
@@ -177,8 +178,9 @@ def marks():
             marks_pred_3, third_chart = marks_prediction(value,third_city, sector, start_date, end_date)
             print(marks_pred)
             mk = marks_pred
+            mk_2="You can also compare "+str(city)+" "+"with 2 closes city: "+str(second_city)+" and "+str(third_city)
 
-    return render_template("index.html",my_marks = mk,chart_for_html=chart_from_python,chart_for_html_2=second_chart,chart_for_html_3=third_chart)
+    return render_template("index.html",my_marks_2 = mk_2,my_marks = mk,chart_for_html=chart_from_python,chart_for_html_2=second_chart,chart_for_html_3=third_chart)
 
 if __name__== "__main__":
     app.run(debug = True)

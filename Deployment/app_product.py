@@ -167,19 +167,27 @@ def marks():
         end_date = request.form['inflation_date_end']
         value,sector = get_sector_value(product)
         value = float(value)
-        print(type(value))
-        if value == 0:
-            return render_template("product.html",my_marks = "Sorry, but There is no Product")
+   
+        if product =="" or city=="" or or end_date=="":
+            mk = "Please fill in the inputs to get the inflation result."
+            return render_template("index.html",my_marks = mk)
+        elif end_date <= start_date:
+            mk = "The date must not from the previous month"
+            return render_template("index.html",my_marks = mk)
         else:
-            end_date = pd.to_datetime(end_date)
-            start_date = pd.to_datetime(start_date)
-            second_city,third_city = city_comparison(city)
-            marks_pred,chart_from_python = marks_prediction(value,city, sector, start_date, end_date)
-            marks_pred_2, second_chart = marks_prediction(value,second_city, sector, start_date, end_date)
-            marks_pred_3, third_chart = marks_prediction(value,third_city, sector, start_date, end_date)
-            print(marks_pred)
-            mk = marks_pred
-    
+
+            if value == 0:
+                return render_template("product.html",my_marks = "Sorry, but There is no Product")
+            else:
+                end_date = pd.to_datetime(end_date)
+                start_date = pd.to_datetime(start_date)
+                second_city,third_city = city_comparison(city)
+                marks_pred,chart_from_python = marks_prediction(value,city, sector, start_date, end_date)
+                marks_pred_2, second_chart = marks_prediction(value,second_city, sector, start_date, end_date)
+                marks_pred_3, third_chart = marks_prediction(value,third_city, sector, start_date, end_date)
+                print(marks_pred)
+                mk = marks_pred
+        
     return render_template("product.html",my_marks = mk,chart_for_html=chart_from_python,chart_for_html_2=second_chart,chart_for_html_3=third_chart)
         
 if __name__== "__main__":

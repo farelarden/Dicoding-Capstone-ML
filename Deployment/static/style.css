@@ -1,16 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-#wat{
-    margin-top: 200px;
-}
-
 :root {
     --primary: rgb(0, 156, 122) !important;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
-    height: auto;
+    /* height: 100vh; */
 }
 
 .bg-img {
@@ -20,8 +16,8 @@ body {
     position: relative;
     overflow: hidden;
     /* width: 100%; */
-    height: 140vh;
-    background-position-y: -100px;
+    height: 200vh;
+    /* background-position-y: -100px; */
 }
 
 .overlay {
@@ -110,8 +106,8 @@ body {
     margin: 0 auto;
     float: none;
     margin-bottom: 10px;
-    height: 700px;
-    width: 1000px;
+    /* height: 1000px; */
+    /* width: 1000px; */
 }
 
 .value {

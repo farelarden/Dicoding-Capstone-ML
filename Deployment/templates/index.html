@@ -47,7 +47,8 @@
                                 </div>
 
                                 <div class="col-6">
-                                    <input type="text" class="form-control" id="value" placeholder="~Input your value~" name="value">
+                                    <input type="text" class="form-control" id="value" placeholder="~Input your value~"
+                                        name="value">
                                 </div>
                                 <div class="col-md-1"></div>
                             </div>
@@ -79,8 +80,8 @@
 
                                 <div class="col-6">
                                     <div class="input-group">
-                                        <select id="city" name="city" class="selectpicker w-100 btn-green" data-live-search="true"
-                                            id="city">
+                                        <select id="city" name="city" class="selectpicker w-100 btn-green"
+                                            data-live-search="true" id="city">
                                             <option>~Choose your city~</option>
                                             <option value="KOTA MEULABOH">Meulaboh</option>
                                             <option value="KOTA BANDA ACEH">Banda Aceh</option>
@@ -177,7 +178,8 @@
                                 </div>
 
                                 <div class="col-6">
-                                    <input type="date" class="form-control" name="inflation_date_end" id="inflation_date_end">
+                                    <input type="date" class="form-control" name="inflation_date_end"
+                                        id="inflation_date_end">
                                 </div>
                                 <div class="col-md-1"></div>
                             </div>
@@ -195,45 +197,70 @@
 
                         </form>
 
-                        {% if my_marks %}
-                        {{my_marks}}
-                        {% endif %}
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                {% if my_marks %}
+                                {{my_marks}}
+                                {% endif %}
+                            </div>
+                        </div>
+
 
                         <div class="row my-3 pd-md-5">
                             <!-- <h5 class="text-center">Line chart</h5> -->
                             <div class="col-md-1"></div>
                             <div class="col-md-10">
-                                <div class="d-grid gap-1"id="chart1" >
+                                <div class="d-grid gap-1" id="chart1">
 
-                                 <script type="text/javascript">
-                                    var graphs;
-                                    var graphs = {{ chart_for_html | safe }};
-                                    var graphs=JSON.parse(graphs);
-                                    // console.log()
-                                    var config ={displayModeBar: false,showTips: false,responsive:true};
-                                    Plotly.plot('chart1',graphs.data,graphs.layout,config);
+                                    <script type="text/javascript">
+                                        var graphs;
+                                        var graphs = {
+                                            {
+                                                chart_for_html | safe
+                                            }
+                                        };
+                                        var graphs = JSON.parse(graphs);
+                                        // console.log()
+                                        var config = {
+                                            displayModeBar: false,
+                                            showTips: false,
+                                            responsive: true
+                                        };
+                                        Plotly.plot('chart1', graphs.data, graphs.layout, config);
                                     </script>
                                 </div>
                             </div>
                             <div class="col-md-1"></div>
                         </div>
 
-                        {% if my_marks_2 %}
-                        {{my_marks_2}}
-                        {% endif %}
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                {% if my_marks_2 %}
+                                {{my_marks_2}}
+                                {% endif %}
+                            </div>
+                        </div>
 
                         <div class="row my-3 pd-md-5">
                             <div class="col-md-1"></div>
                             <div class="col-md-10">
                                 <div class="d-grid gap-1" id="chart2">
 
-                                 <script type="text/javascript">
-                                    var graphs;
-                                    var graphs = {{ chart_for_html_2 | safe }};
-                                    var graphs=JSON.parse(graphs);
-                                    // console.log()
-                                    var config ={displayModeBar: false,showTips: false,responsive:true};
-                                    Plotly.plot('chart2',graphs.data,graphs.layout,config);
+                                    <script type="text/javascript">
+                                        var graphs;
+                                        var graphs = {
+                                            {
+                                                chart_for_html_2 | safe
+                                            }
+                                        };
+                                        var graphs = JSON.parse(graphs);
+                                        // console.log()
+                                        var config = {
+                                            displayModeBar: false,
+                                            showTips: false,
+                                            responsive: true
+                                        };
+                                        Plotly.plot('chart2', graphs.data, graphs.layout, config);
                                     </script>
                                 </div>
                             </div>
@@ -245,13 +272,21 @@
                             <div class="col-md-10">
                                 <div class="d-grid gap-1" id="chart3">
 
-                                 <script type="text/javascript">
-                                    var graphs;
-                                    var graphs = {{ chart_for_html_3 | safe }};
-                                    var graphs=JSON.parse(graphs);
-                                    // console.log()
-                                    var config ={displayModeBar: false,showTips: false,responsive:true};
-                                    Plotly.plot('chart3',graphs.data,graphs.layout,config);
+                                    <script type="text/javascript">
+                                        var graphs;
+                                        var graphs = {
+                                            {
+                                                chart_for_html_3 | safe
+                                            }
+                                        };
+                                        var graphs = JSON.parse(graphs);
+                                        // console.log()
+                                        var config = {
+                                            displayModeBar: false,
+                                            showTips: false,
+                                            responsive: true
+                                        };
+                                        Plotly.plot('chart3', graphs.data, graphs.layout, config);
                                     </script>
                                 </div>
                                 <a href="product.html">Next</a>

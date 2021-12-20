@@ -47,7 +47,8 @@
                                 </div>
 
                                 <div class="col-6">
-                                    <input type="text" class="form-control" id="product" placeholder="~Input your product~" name="product">
+                                    <input type="text" class="form-control" id="product"
+                                        placeholder="~Input your product~" name="product">
                                 </div>
                                 <div class="col-md-1"></div>
                             </div>
@@ -195,9 +196,13 @@
 
                         </form>
 
-                        {% if my_marks %}
-                        {{my_marks}}
-                        {% endif %}
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                {% if my_marks %}
+                                {{my_marks}}
+                                {% endif %}
+                            </div>
+                        </div>
 
                         <div class="row my-3 pd-md-5">
                             <!-- <h5 class="text-center">Line chart</h5> -->
@@ -206,13 +211,21 @@
                                 <div class="d-grid gap-1" id="chart1">
 
                                     <script type="text/javascript">
-                                       var graphs;
-                                        var graphs = {{ chart_for_html | safe }};
-                                        var graphs=JSON.parse(graphs);
+                                        var graphs;
+                                        var graphs = {
+                                            {
+                                                chart_for_html | safe
+                                            }
+                                        };
+                                        var graphs = JSON.parse(graphs);
                                         // console.log()
-                                        var config ={displayModeBar: false,showTips: false,responsive:true};
-                                        Plotly.plot('chart1',graphs.data,graphs.layout,config);
-                                        </script>
+                                        var config = {
+                                            displayModeBar: false,
+                                            showTips: false,
+                                            responsive: true
+                                        };
+                                        Plotly.plot('chart1', graphs.data, graphs.layout, config);
+                                    </script>
                                     </script>
                                 </div>
                             </div>
@@ -226,11 +239,19 @@
 
                                     <script type="text/javascript">
                                         var graphs2;
-                                        var graphs2 = {{ chart_for_html_2 | safe }};
-                                        var graphs2=JSON.parse(graphs2);
+                                        var graphs2 = {
+                                            {
+                                                chart_for_html_2 | safe
+                                            }
+                                        };
+                                        var graphs2 = JSON.parse(graphs2);
                                         // console.log()
-                                        var config ={displayModeBar: false,showTips: false,responsive:true};
-                                        Plotly.plot('chart2',graphs2.data,graphs.layout,config);
+                                        var config = {
+                                            displayModeBar: false,
+                                            showTips: false,
+                                            responsive: true
+                                        };
+                                        Plotly.plot('chart2', graphs2.data, graphs.layout, config);
                                     </script>
                                 </div>
                             </div>
@@ -244,11 +265,19 @@
 
                                     <script type="text/javascript">
                                         var graphs3;
-                                        var graphs3 = {{ chart_for_html_3 | safe }};
-                                        var graphs3=JSON.parse(graphs3);
+                                        var graphs3 = {
+                                            {
+                                                chart_for_html_3 | safe
+                                            }
+                                        };
+                                        var graphs3 = JSON.parse(graphs3);
                                         // console.log()
-                                        var config ={displayModeBar: false,showTips: false,responsive:true};
-                                        Plotly.plot('chart3',graphs3.data,graphs.layout,config);
+                                        var config = {
+                                            displayModeBar: false,
+                                            showTips: false,
+                                            responsive: true
+                                        };
+                                        Plotly.plot('chart3', graphs3.data, graphs.layout, config);
                                     </script>
                                 </div>
                                 <a href="index.html">Next</a>

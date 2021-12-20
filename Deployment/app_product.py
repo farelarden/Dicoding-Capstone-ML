@@ -74,7 +74,8 @@ def marks_prediction(value,city, sector, start_date, end_date):
 
     future = m.make_future_dataframe(periods=100,freq='M')
     forecast = m.predict(future)
-
+    start_date = start_date - dateutil.relativedelta.relativedelta(months=1)
+    end_date = end_date + dateutil.relativedelta.relativedelta(months=1)
     mask = (forecast['ds'] > start_date) & (forecast['ds'] <= end_date)
     
     graph_mask = forecast['ds'] <= end_date
@@ -168,7 +169,7 @@ def marks():
         value,sector = get_sector_value(product)
         value = float(value)
    
-        if product =="" or city=="" or or end_date=="":
+        if product =="" or city=="" or end_date=="":
             mk = "Please fill in the inputs to get the inflation result."
             return render_template("index.html",my_marks = mk)
         elif end_date <= start_date:
@@ -186,7 +187,7 @@ def marks():
                 marks_pred_2, second_chart = marks_prediction(value,second_city, sector, start_date, end_date)
                 marks_pred_3, third_chart = marks_prediction(value,third_city, sector, start_date, end_date)
                 print(marks_pred)
-                mk = marks_pred
+                mk = "The predicted value of your item is Rp "+ str(marks_pred)
         
     return render_template("product.html",my_marks = mk,chart_for_html=chart_from_python,chart_for_html_2=second_chart,chart_for_html_3=third_chart)
         

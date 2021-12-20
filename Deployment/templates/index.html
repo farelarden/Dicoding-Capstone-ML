@@ -214,19 +214,10 @@
 
                                     <script type="text/javascript">
                                         var graphs;
-                                        var graphs = {
-                                            {
-                                                chart_for_html | safe
-                                            }
-                                        };
-                                        var graphs = JSON.parse(graphs);
-                                        // console.log()
-                                        var config = {
-                                            displayModeBar: false,
-                                            showTips: false,
-                                            responsive: true
-                                        };
-                                        Plotly.plot('chart1', graphs.data, graphs.layout, config);
+                                        var graphs = {{ chart_for_html | safe }};
+                                        var graphs=JSON.parse(graphs);
+                                        var config ={displayModeBar: false,showTips: false,responsive:true};
+                                        Plotly.plot('chart1',graphs.data,graphs.layout,config);
                                     </script>
                                 </div>
                             </div>
@@ -248,19 +239,10 @@
 
                                     <script type="text/javascript">
                                         var graphs;
-                                        var graphs = {
-                                            {
-                                                chart_for_html_2 | safe
-                                            }
-                                        };
-                                        var graphs = JSON.parse(graphs);
-                                        // console.log()
-                                        var config = {
-                                            displayModeBar: false,
-                                            showTips: false,
-                                            responsive: true
-                                        };
-                                        Plotly.plot('chart2', graphs.data, graphs.layout, config);
+                                        var graphs = {{ chart_for_html_2 | safe }};
+                                        var graphs=JSON.parse(graphs);
+                                        var config ={displayModeBar: false,showTips: false,responsive:true};
+                                        Plotly.plot('chart1',graphs.data,graphs.layout,config);
                                     </script>
                                 </div>
                             </div>
@@ -274,20 +256,13 @@
 
                                     <script type="text/javascript">
                                         var graphs;
-                                        var graphs = {
-                                            {
-                                                chart_for_html_3 | safe
-                                            }
-                                        };
-                                        var graphs = JSON.parse(graphs);
+                                        var graphs = {{ chart_for_html_3 | safe }};
+                                        var graphs=JSON.parse(graphs);
                                         // console.log()
-                                        var config = {
-                                            displayModeBar: false,
-                                            showTips: false,
-                                            responsive: true
-                                        };
-                                        Plotly.plot('chart3', graphs.data, graphs.layout, config);
+                                        var config ={displayModeBar: false,showTips: false,responsive:true};
+                                        Plotly.plot('chart1',graphs.data,graphs.layout,config);
                                     </script>
+
                                 </div>
                                 <a href="product.html">Next</a>
                             </div>

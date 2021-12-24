@@ -27,13 +27,13 @@ Gambar di atas merupakan tampilan ketika anda memasuki harga dari barang anda, n
 
 *Perlu digaris bawahi: tanggal yang diberikan tidak boleh pada hari yang sama maupun pada hari sebelum hari ini*
 
-![gambar3](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_2_1.JPG)
+![gambar3](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_3_1.JPG)
 
 Gambar di atas merupakan tampilan dari hasil prediksi beserta grafik yang memunculkan pergerakan harga dari tahun ke tahun (dari 2014 hingga tanggal prediksi)
 
-![gambar4](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_2_2.JPG)
+![gambar4](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_3_2.JPG)
 
-![gambar5](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_2_3.JPG)
+![gambar5](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_3_3.JPG)
 
 Kami pula memberikan perbandingan terhadap 2 kota terdekat dari kota yang user pilih, sehingga dapat menjadi pertimbangan user untuk membuat keputusan
 
@@ -45,13 +45,13 @@ Gambar di atas merupakan tampilan ketika anda memasuki nama produk dari barang a
 
 *Perlu digaris bawahi: tanggal yang diberikan tidak boleh pada hari yang sama maupun pada hari sebelum hari ini*
 
-![gambar3](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_3_1.JPG)
+![gambar3](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_2_1.JPG)
 
 Gambar di atas merupakan tampilan dari hasil prediksi beserta grafik yang memunculkan pergerakan harga dari tahun ke tahun (dari 2014 hingga tanggal prediksi)
 
-![gambar4](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_3_2.JPG)
+![gambar4](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_2_2.JPG)
 
-![gambar5](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_3_3.JPG)
+![gambar5](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_2_3.JPG)
 
 Kami pula memberikan perbandingan terhadap 2 kota terdekat dari kota yang user pilih, sehingga dapat menjadi pertimbangan user untuk membuat keputusan
 
@@ -59,4 +59,4 @@ Projek ini dibuat oleh tim MSIB Dicoding CSD-118:
 * Farel Arden M306R7319
 * Rizal Sihombing M237R5203
 
-# Raw dataset : Badan Pusat Statistik 
+Data yang kami gunakan berasal dari Badan Pusat Statistik 

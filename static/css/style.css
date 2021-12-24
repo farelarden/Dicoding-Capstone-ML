@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+    --primary: rgb(0, 156, 122) !important;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* height: 170vh; */
+    /* overflow-y: hidden; */
+    
+}
+#second_title{
+    margin-top:10px;
+}
+.bg-img {
+    /* position: absolute; */
+    background: url('../images/img-hero-min4.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+    /* width: 100%; */
+    height: 300vh;
+    /* background-position-y: -100px; */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.title-lg {
+    margin-top: 200px;
+}
+
+.title-lg>h1 {
+    font-size: 92px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.title-lg>h2 {
+    font-size: 68px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.title-lg>h2>span {
+    font-size: 72px;
+    font-weight: 500;
+    color: #00C49A;
+}
+
+.card-login {
+    margin-top: 150px;
+}
+
+.card-login>.card>h2 {
+    text-align: center;
+}
+
+.card {
+    background-color: #FCFCFC;
+    color: #063940;
+}
+
+.register {
+    text-align: center;
+    color: #063940;
+}
+
+.register>a {
+    text-align: center;
+    color: #063940;
+    text-decoration-color: #063940;
+}
+
+.register>a:hover {
+    color: #000;
+    text-decoration-color: #000;
+}
+
+.form-control {
+    border-color: rgba(0, 196, 154, 0.3);
+}
+
+.form-control:focus {
+    border-color: rgba(0, 196, 154, 1) !important;
+    box-shadow: rgba(0, 196, 154, 0.25) !important;
+}
+
+.btn-green {
+    color: white;
+    border-color: #00C49A;
+    background-color: #00C49A;
+}
+
+.btn-green:hover {
+    color: white;
+    border-color: rgb(0, 156, 122);
+    background-color: rgb(0, 156, 122);
+}
+
+/* file index */
+.card-index {
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+    /* height: 1000px; */
+    /* width: 1000px; */
+}
+
+.value {
+    color: #06ebb9;
+}
+
+.sector {
+    border-color: rgba(0, 196, 154, 0.3);
+    cursor: pointer;
+}
+
+.sector:hover {
+    border-color: rgba(0, 196, 154, 0.3);
+    cursor: pointer;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #00C49A;
+}
+
+.dropdown-item.active, .dropdown-item:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #00C49A;
+}

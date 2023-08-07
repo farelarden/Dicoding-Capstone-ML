@@ -1,62 +1,62 @@
 # Inflativa
 
-Inflasi seringkali disebut sebagai silent killer. Hal ini disebabkan karena masyarakat seringkali tidak menyadari dengan kenaikan harga dan menganggap enteng permasalahan tersebut. Dalam proyek kami, kami akan mengulik beberapa pertanyaan seperti:
+Inflation is often referred to as the silent killer. This is because people often fail to notice the rise in prices and tend to underestimate the issue. In our project, we will delve into several questions such as:
 
-* Berapa tingkat inflasi suatu barang pada masa yang akan datang berdasarkan sektor barang dan kota?
-* Berapa harga atau nilai suatu barang pada masa yang akan datang berdasarkan sektor barang dan kota?
+* What is the projected inflation rate for a specific product in the future based on the product category and city?
+* What will be the price or value of a specific product in the future based on the product category and city?
+  
+We have undertaken this project with the hope that the public will become more familiar with inflation. With this knowledge, we aim for the public to be better prepared to handle inflationary changes. Our project will be deployed on the web using the Python Flask library. Users will be prompted to provide five pieces of information as input: value, product name, product category, user location/city, and the end date for calculation.
 
-Kami membuat proyek ini dengan harapan masyarakat dapat lebih kenal dengan inflasi dan dengan pengetahuan tersebut, kami berharap supaya masyarakat lebih siap terhadap inflasi.
-Proyek kami akan di deploy ke dalam web menggunakan library python flask di mana user akan diminta untuk memberikan 5 informasi sebagai masukan, yaitu nilai (value), nama produk, sektor barang, lokasi/kota user, dan tanggal akhir penghitungan.
-
-Anda dapat mengakses website kami pada:
+You can access our website at:
 http://alphaprime27.pythonanywhere.com/
 
-## Cara Penggunaan
+## Usage Instructions
 
 ![gambar1](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_1.JPG)
 
-Gambar di atas merupakan tampilan awal ketika anda memasuki website kami
+The image above represents the initial display when you enter our website.
 
-Kemudian anda dapat memilih untuk mengisi harga dari barang yang akan anda prediksi atau nama produk
+You can then choose to either input the price of the item you want to predict or its product name.
 
-### Opsi Pertama: Mengisi Harga
+### Option One: Inputting Price
 
 ![gambar2](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_2.JPG)
 
-Gambar di atas merupakan tampilan ketika anda memasuki harga dari barang anda, namun ketika anda sudah memasuki harga dari barang anda, maka anda tidak bisa memasuki sektor dari barang anda.
+The image above displays the interface when you input the price of your item. Once you have entered the price, you won't be able to input the product category.
 
-*Perlu digaris bawahi: tanggal yang diberikan tidak boleh pada hari yang sama maupun pada hari sebelum hari ini*
+*Important note: The provided date cannot be the same day or a day before today.*
 
 ![gambar3](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_3_1.JPG)
 
-Gambar di atas merupakan tampilan dari hasil prediksi beserta grafik yang memunculkan pergerakan harga dari tahun ke tahun (dari 2014 hingga tanggal prediksi)
+The image above showcases the prediction results along with a graph displaying the price movement over the years (from 2014 to the prediction date).
 
 ![gambar4](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_3_2.JPG)
 
 ![gambar5](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_3_3.JPG)
 
-Kami pula memberikan perbandingan terhadap 2 kota terdekat dari kota yang user pilih, sehingga dapat menjadi pertimbangan user untuk membuat keputusan
+We also provide a comparison between two nearby cities to assist users in making informed decisions.
 
-### Opsi Kedua: Mengisi Nama Produk
+### Option Two: Inputting Product Name
 
 ![gambar6](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_3.JPG)
 
-Gambar di atas merupakan tampilan ketika anda memasuki nama produk dari barang anda, namun ketika anda sudah memasuki nama produk, anda tidak dapat mengisi harga maupun sektor dari barang tersebut
+The image above displays the interface when you input the product name. Once you have entered the product name, you won't be able to input the price or product category.
 
-*Perlu digaris bawahi: tanggal yang diberikan tidak boleh pada hari yang sama maupun pada hari sebelum hari ini*
+*Important note: The provided date cannot be the same day or a day before today.*
 
 ![gambar3](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_2_1.JPG)
 
-Gambar di atas merupakan tampilan dari hasil prediksi beserta grafik yang memunculkan pergerakan harga dari tahun ke tahun (dari 2014 hingga tanggal prediksi)
+The image above showcases the prediction results along with a graph displaying the price movement over the years (from 2014 to the prediction date).
 
 ![gambar4](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_2_2.JPG)
 
 ![gambar5](https://github.com/farelarden/Satria-Data-2021/blob/main/Capture_2_3.JPG)
 
-Kami pula memberikan perbandingan terhadap 2 kota terdekat dari kota yang user pilih, sehingga dapat menjadi pertimbangan user untuk membuat keputusan
+We also provide a comparison between two nearby cities to assist users in making informed decisions.
 
-Projek ini dibuat oleh tim MSIB Dicoding CSD-118:
+This project was created by the MSIB Dicoding CSD-118 team:
+
 * Farel Arden M306R7319
 * Rizal Sihombing M237R5203
 
-Data yang kami gunakan berasal dari Badan Pusat Statistik 
+The data used in this project is sourced from the Central Statistics Agency (Badan Pusat Statistik).
